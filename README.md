@@ -3,7 +3,7 @@
 > **Multi-OS Model Context Protocol (MCP) Server, CLI & Interactive Studio (design influenced by Material 3 tokens) for Cron AST Parsing, 24×7 Rhythm Heatmaps, Humanization, and Multi-Dialect Transpilation.**
 > **Zero External Dependencies** — 100% Python Standard Library (3.9–3.13).
 
-[![CI](https://github.com/1nc0gn30/cron-rhythm-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/cron-rhythm-studio/actions/workflows/ci.yml)
+[![CI](https://github.com/NullAITech/cron-rhythm-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/cron-rhythm-studio/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![FastMCP](https://img.shields.io/badge/MCP-Protocol%202.0-green.svg)](https://modelcontextprotocol.io/)
@@ -53,7 +53,7 @@ pip install cron-rhythm-studio
 Or install from source:
 
 ```bash
-git clone https://github.com/1nc0gn30/cron-rhythm-studio.git
+git clone https://github.com/NullAITech/cron-rhythm-studio.git
 cd cron-rhythm-studio
 pip install -e .
 ```
