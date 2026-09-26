@@ -1278,16 +1278,39 @@ class StudioAPIHandler(http.server.BaseHTTPRequestHandler):
         path = parsed_url.path
         query = urllib.parse.parse_qs(parsed_url.query)
 
-        # 1. Web UI Single-Page App
-        if path == "/" or path == "/index.html" or path == "/studio":
+        # 1. Static Files from public directory (HTML, CSS, JS, Images)
+        public_root = pathlib.Path(__file__).resolve().parent.parent.parent / "public"
+        safe_rel = path.lstrip("/")
+        if not safe_rel or safe_rel in ("index.html", "studio"):
+            safe_rel = "index.html"
+        candidate_file = (public_root / safe_rel).resolve()
+        try:
+            if candidate_file.is_file() and public_root in candidate_file.parents:
+                content_type = "text/html; charset=utf-8"
+                if safe_rel.endswith(".css"):
+                    content_type = "text/css; charset=utf-8"
+                elif safe_rel.endswith(".js"):
+                    content_type = "application/javascript; charset=utf-8"
+                elif safe_rel.endswith(".png"):
+                    content_type = "image/png"
+                elif safe_rel.endswith(".svg"):
+                    content_type = "image/svg+xml"
+                elif safe_rel.endswith(".json"):
+                    content_type = "application/json"
+                self.send_response(200)
+                self.send_header("Content-Type", content_type)
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(candidate_file.read_bytes())
+                return
+        except Exception:
+            pass
+
+        if path in ("/", "/index.html", "/studio"):
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.end_headers()
-            disk_index = pathlib.Path(__file__).resolve().parent.parent.parent / "public" / "index.html"
-            if disk_index.is_file():
-                self.wfile.write(disk_index.read_bytes())
-            else:
-                self.wfile.write(MATERIAL_WEB_HTML.encode("utf-8"))
+            self.wfile.write(MATERIAL_WEB_HTML.encode("utf-8"))
             return
 
         # 2. REST API: /api/parse

@@ -1,0 +1,34 @@
+{
+  "name": "cron-rhythm-studio",
+  "version": "2.0.0",
+  "description": "Zero-Dependency AST Schedule Parser, 24×7 Rhythm Matrix, Multi-Dialect Transpiler & DST Anomaly Auditor — Desktop Workstation",
+  "main": "electron/main.cjs",
+  "bin": {
+    "cron-rhythm": "./bin/cron-rhythm.js",
+    "cron-rhythm-studio": "./bin/cron-rhythm.js"
+  },
+  "scripts": {
+    "start": "python3 -m cron_rhythm_studio.cli serve --port 8080",
+    "electron": "electron .",
+    "app": "electron .",
+    "test": "pytest tests/"
+  },
+  "keywords": [
+    "cron",
+    "rhythm",
+    "scheduler",
+    "ast",
+    "transpiler",
+    "dst",
+    "matrix",
+    "zero-egress",
+    "sovereign",
+    "electron",
+    "zoth"
+  ],
+  "author": "NullAI Tech / Zoth Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^34.5.8"
+  }
+}
