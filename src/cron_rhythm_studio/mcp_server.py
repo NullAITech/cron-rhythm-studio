@@ -616,6 +616,14 @@ def _execute_tool_audit_fleet(arguments: Dict[str, Any]) -> Dict[str, Any]:
     auto_rebal = bool(arguments.get("auto_rebalance", True))
     max_shift = int(arguments.get("max_shift_minutes", 25))
 
+    start_time_arg = arguments.get("start_time")
+    start_dt = None
+    if start_time_arg:
+        try:
+            start_dt = datetime.fromisoformat(str(start_time_arg).replace("Z", "+00:00"))
+        except Exception:
+            start_dt = None
+
     jobs: Dict[str, str] = {}
     if isinstance(raw_jobs, dict):
         jobs = {str(k): str(v) for k, v in raw_jobs.items()}
@@ -632,6 +640,7 @@ def _execute_tool_audit_fleet(arguments: Dict[str, Any]) -> Dict[str, Any]:
         horizon_hours=horizon,
         auto_rebalance=auto_rebal,
         max_shift_minutes=max_shift,
+        start_time=start_dt,
     )
     return report.to_dict()
 

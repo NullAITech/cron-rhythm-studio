@@ -84,8 +84,8 @@ def test_fleet_mcp_tool_call():
             "name": "cron_audit_fleet",
             "arguments": {
                 "jobs": {
-                    "backup": "0 0 * * *",
-                    "sync": "0 0 * * *",
+                    "backup": "0 * * * *",
+                    "sync": "0 * * * *",
                 },
                 "horizon_hours": 12,
             },
